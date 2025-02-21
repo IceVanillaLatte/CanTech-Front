@@ -1,0 +1,26 @@
+name: Next.js CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "develop"]
+  pull_request:
+    branches: [ "develop"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 코드 체크아웃
+      uses: actions/checkout@v3
+
+    - name: 📦 Node.js 설치
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: 📦 Next.js 의존성 설치
+      run: npm install
+
+    - name: 🚀 Next.js 빌드
+      run: npm run build
